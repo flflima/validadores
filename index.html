@@ -6,9 +6,15 @@
 <body onload="esconderMsgs();">
 	<form>
 		<fieldset>
-			<legend>Campo</legend>
+			<legend>Campo Vazio</legend>
 			<input type="text" id="cmp_vazio" onBlur="validarCampoVazio(id);">
 			<div id="msg_cmp_vazio" class="mensagem"></div>
+		</fieldset>
+		<br />
+		<fieldset>
+			<legend>Validar CPF</legend>
+			<input type="text" maxlength="11" id="cmp_cpf" onBlur="validarCPF(id);">
+			<div id="msg_cmp_cpf" class="mensagem"></div>
 		</fieldset>
 	<form>
 </body>
