@@ -31,8 +31,7 @@ function mensagemCampoInvalido(idCampo) {
 function validarCPF(idCampo) {
 	var cpf = document.getElementById(idCampo).value;
 	
-	if (cpf.length < 11 || cpf.length != 11) {
-		mensagemCampoInvalido(idCampo);
+	if (!validarTamanhoTexto(cpf, idCampo)) {
 		return;
 	}
 	
@@ -50,4 +49,21 @@ function validarCPF(idCampo) {
 	
 	console.log("Dígitos do CPF: " + digitos);
 
+	var primeiroDigito = digitos[0];
+	for (var i = 1; i < digitos.length; i++) {
+		if (primeiroDigito !== digitos[i]) {
+			break;
+		} else if(i === digitos.length - 1) {
+			mensagemCampoInvalido(idCampo);
+			return;
+		}
+	}
+}
+
+function validarTamanhoTexto(texto, id)
+{
+	if (texto.length < 11 || texto.length != 11) {
+		mensagemCampoInvalido(id);
+		return false;
+	}
 }
