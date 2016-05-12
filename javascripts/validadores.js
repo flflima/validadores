@@ -29,17 +29,47 @@ function mensagemCampoInvalido(idCampo) {
 }
 
 function validarCPF(idCampo) {
+	esconderMsgs();
+	
 	var cpf = document.getElementById(idCampo).value;
 	
 	if (!validarTamanhoTexto(cpf, idCampo)) {
 		return;
 	}
 	
-	var digitos = [];
+	var digitos = obterDigitosCPF(cpf);
 
+	var todosDigitosIguais = true;
+	
+	for (var i = 0; i < digitos.length - 1; i++) {
+		if (digitos[i] !== digitos[i + 1]) {
+			todosDigitosIguais = false;
+		} 
+	}
+	
+	if (todosDigitosIguais) {
+		mensagemCampoInvalido(idCampo);
+		return;
+	}
+}
+
+function validarTamanhoTexto(texto, id) {
+	//TODO tornar variavel o tamanho
+	var textoTamanhoValido = texto.length === 11;
+	
+	if (textoTamanhoValido) {
+		return true;
+	} else {
+		mensagemCampoInvalido(id);		
+	}
+}
+
+function obterDigitosCPF(cpf) {	
 	var limite = cpf.length;
 	
 	var cont = Math.pow(10, limite - 1);
+	
+	var digitos = [];
 	
 	for (var i = 0; i < limite; i++) {
 		digitos[i] = parseInt(cpf / cont);
@@ -48,22 +78,6 @@ function validarCPF(idCampo) {
 	}
 	
 	console.log("Dígitos do CPF: " + digitos);
-
-	var primeiroDigito = digitos[0];
-	for (var i = 1; i < digitos.length; i++) {
-		if (primeiroDigito !== digitos[i]) {
-			break;
-		} else if(i === digitos.length - 1) {
-			mensagemCampoInvalido(idCampo);
-			return;
-		}
-	}
-}
-
-function validarTamanhoTexto(texto, id)
-{
-	if (texto.length < 11 || texto.length != 11) {
-		mensagemCampoInvalido(id);
-		return false;
-	}
+	
+	return digitos;
 }
