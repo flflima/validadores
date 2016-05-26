@@ -1,4 +1,8 @@
-﻿function esconderMsgs() {
+﻿function inicializar() {
+	esconderMsgs();
+}
+
+function esconderMsgs() {
 	var mensagens = document.getElementsByClassName("mensagem");
 	for (var i = 0; i < mensagens.length; i++) {
 		// transformar em classe CSS
@@ -81,3 +85,5 @@ function obterDigitosCPF(cpf) {
 	
 	return digitos;
 }
+
+window.onload = inicializar;
