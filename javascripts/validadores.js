@@ -11,11 +11,9 @@ function esconderMsgs() {
 	}
 }
 
-function validarCampoVazio(idCampo) {
-	var campo = document.getElementById(idCampo);
-	
-	if (campo.value === "") {
-		mensagemCampoInvalido(idCampo);
+function validarCampoVazio() {	
+	if (this.value === "") {
+		mensagemCampoInvalido(this.id);
 	} else {
 		esconderMsgs();
 	}
@@ -87,3 +85,5 @@ function obterDigitosCPF(cpf) {
 }
 
 window.onload = inicializar;
+
+document.getElementById("cmp_vazio").onblur = validarCampoVazio;
