@@ -41,16 +41,8 @@ function validarCPF() {
 	}
 	
 	var digitos = obterDigitosCPF(cpf);
-
-	var todosDigitosIguais = true;
 	
-	for (var i = 0; i < digitos.length - 1; i++) {
-		if (digitos[i] !== digitos[i + 1]) {
-			todosDigitosIguais = false;
-		} 
-	}
-	
-	if (todosDigitosIguais) {
+	if (todosDigitosIguais(digitos)) {
 		mensagemCampoInvalido(idCampo);
 		return;
 	}
@@ -59,6 +51,15 @@ function validarCPF() {
 		mensagemCampoInvalido(idCampo);
 		return;
 	}
+}
+
+function todosDigitosIguais(digitos) {
+	for (var i = 0; i < digitos.length - 1; i++) {
+		if (digitos[i] !== digitos[i + 1]) {
+			return false;
+		} 
+	}	
+	return true;
 }
 
 function validarCpf(digitos) {
