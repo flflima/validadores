@@ -54,6 +54,36 @@ function validarCPF() {
 		mensagemCampoInvalido(idCampo);
 		return;
 	}
+	
+	if (!validarCpf(digitos)) {
+		mensagemCampoInvalido(idCampo);
+		return;
+	}
+}
+
+function validarCpf(digitos) {
+	var primeiroDigito = getDigitoVerificador(digitos, 9);
+	var segundoDigito = getDigitoVerificador(digitos, 10);
+	
+	console.log(primeiroDigito + " = " + digitos[9]);	
+	console.log(segundoDigito + " = " + digitos[10]);
+	
+	return primeiroDigito === digitos[9] && segundoDigito === digitos[10];
+}
+
+function getDigitoVerificador(digitos, posicaoDigito) {
+	var soma = 0;	
+	var posAnteriorDV = posicaoDigito - 1;
+	var peso = posicaoDigito + 1;
+	
+	// calcula a soma dos n primeiros digitos
+	for (var i = 2; i <= peso; i++) {
+		soma = soma + (digitos[posAnteriorDV--] * i);
+	}
+	
+	soma = soma * 10;
+	
+	return soma % 11;
 }
 
 function validarTamanhoTexto(texto, id) {
