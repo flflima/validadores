@@ -30,10 +30,11 @@ function mensagemCampoInvalido(idCampo) {
 	msg.style.margin = "2px 0 0 0";
 }
 
-function validarCPF(idCampo) {
+function validarCPF() {
 	esconderMsgs();
 	
-	var cpf = document.getElementById(idCampo).value;
+	var cpf = this.value;
+	var idCampo = this.id;
 	
 	if (!validarTamanhoTexto(cpf, idCampo)) {
 		return;
@@ -87,3 +88,5 @@ function obterDigitosCPF(cpf) {
 window.onload = inicializar;
 
 document.getElementById("cmp_vazio").onblur = validarCampoVazio;
+
+document.getElementById("cmp_cpf").onblur = validarCPF;
